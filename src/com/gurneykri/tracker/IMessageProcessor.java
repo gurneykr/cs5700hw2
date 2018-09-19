@@ -1,3 +1,5 @@
+package com.gurneykri.tracker;
+
 import java.net.InetAddress;
 
 public interface IMessageProcessor {

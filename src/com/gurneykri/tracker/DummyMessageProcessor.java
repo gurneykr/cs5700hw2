@@ -1,3 +1,7 @@
+package com.gurneykri.tracker;
+
+import com.gurneykri.tracker.Communicator;
+
 import java.net.InetAddress;
 
 public class DummyMessageProcessor implements IMessageProcessor {
@@ -6,8 +10,10 @@ public class DummyMessageProcessor implements IMessageProcessor {
     private int receiveCount;
     public InetAddress address;
     public int port;
+    private Communicator communicator;
 
-    public DummyMessageProcessor(String name) {
+    public DummyMessageProcessor(String name, Communicator communicator) {
+        this.communicator = communicator;
         this.name = name;
     }
     @Override
@@ -25,10 +31,18 @@ public class DummyMessageProcessor implements IMessageProcessor {
         }
 
         if(message.startsWith("Hello")){
-            //String[] parts = message.split(",");
+            System.out.println("Received hello message from client");
             this.address = address;
             this.port = port;
 
+            try {
+                System.out.println("About to send to client");
+                communicator.send("com.gurneykri.tracker.Race,TestRace,100",address,port);
+                communicator.send("Athlete,1234,Krista,Gurney,female,23", address, port);
+                System.out.println("Sent the message to client");
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+            }
         }
 
         System.out.println(String.format("%s received: %s from %s:%d", name, message, address.toString(), port));

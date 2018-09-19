@@ -1,3 +1,5 @@
+package com.gurneykri.tracker;
+
 import java.net.DatagramSocket;
 import java.net.*;
 
@@ -32,17 +34,17 @@ public class Communicator implements Runnable {
     }
 
     /**
-     * @return                  Get the processor that Communicator is using
+     * @return                  Get the processor that com.gurneykri.tracker.Communicator is using
      */
     public IMessageProcessor getProcessor() { return _processor; }
 
     /**
-     * @param processor         Set the Communicator's processor
+     * @param processor         Set the com.gurneykri.tracker.Communicator's processor
      */
     public void setProcessor(IMessageProcessor processor) { _processor = processor; }
 
     /**
-     * Get the local port to which the Communicator's socket is bound
+     * Get the local port to which the com.gurneykri.tracker.Communicator's socket is bound
      * @return                  Returns the port to which the Commuicator's UDP socket is bound. It will return
      *                          0 if there no UDP socket
      */
@@ -115,7 +117,7 @@ public class Communicator implements Runnable {
     }
 
     /**
-     * Start this Communicator as an active object.  This create a thread on which the Run methods is executed
+     * Start this com.gurneykri.tracker.Communicator as an active object.  This create a thread on which the Run methods is executed
      */
     public void start()
     {
@@ -128,7 +130,7 @@ public class Communicator implements Runnable {
     }
 
     /**
-     * Stops the Communicator, gracefully
+     * Stops the com.gurneykri.tracker.Communicator, gracefully
      */
     public void stop() {
         _keepGoing = false;
@@ -136,7 +138,7 @@ public class Communicator implements Runnable {
 
     /**
      * Close any resources used by this communicator, namely the UDP socket.  After this method is called, the
-     * Communicator cannot be used again.
+     * com.gurneykri.tracker.Communicator cannot be used again.
      */
     public void close()
     {
