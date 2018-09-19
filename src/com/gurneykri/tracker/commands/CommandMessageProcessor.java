@@ -2,17 +2,17 @@ package com.gurneykri.tracker.commands;
 
 import com.gurneykri.tracker.ClientManager;
 import com.gurneykri.tracker.IMessageProcessor;
-import com.gurneykri.tracker.Race;
+import com.gurneykri.tracker.RaceManager;
 
 import java.net.InetAddress;
 
 public class CommandMessageProcessor implements IMessageProcessor {
     private ClientManager clientManager;
-    private Race race;
+    private RaceManager raceManager;
 
-    public CommandMessageProcessor(ClientManager clientManager, Race race){
+    public CommandMessageProcessor(ClientManager clientManager, RaceManager raceManager){
         this.clientManager = clientManager;
-        this.race = race;
+        this.raceManager = raceManager;
     }
 
     @Override
@@ -21,9 +21,11 @@ public class CommandMessageProcessor implements IMessageProcessor {
 
         //decide which command to construct
         if(message.startsWith("Race")){
-            command = new CreateRaceCommand(clientManager, race, message, address, port);
+            command = new CreateRaceCommand(clientManager, raceManager, message, address, port);
         }else if(message.startsWith("Hello")){
-            command = new RegisterClientCommand(clientManager, race, message, address, port);
+            command = new RegisterClientCommand(clientManager, raceManager, message, address, port);
+        }else if(message.startsWith("Registered")){
+            command = new RegisterAthleteCommand(clientManager, raceManager, message, address, port);
         }
 
         if(command != null) {

@@ -25,9 +25,9 @@ public class TrackerServer {
         communicator = new Communicator(12000);
 
         ClientManager clientManager = new ClientManager(communicator);
-        Race race = new Race();
+        RaceManager raceManager = new RaceManager();
 
-        CommandMessageProcessor cmp = new CommandMessageProcessor(clientManager, race);
+        CommandMessageProcessor cmp = new CommandMessageProcessor(clientManager, raceManager);
 
         communicator.setProcessor(cmp);
         communicator.start();

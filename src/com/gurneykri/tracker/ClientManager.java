@@ -17,16 +17,31 @@ public class ClientManager {
     }
 
     public void broadcastRaceInfo(String raceName, int raceLength){
-        //tell each client about the race
+        //tell each client about the Race
         for(Client c: clientList){
             try {
                 communicator.send("Race,"+ raceName +"," + raceLength, c.getAddress(), c.getPort());
             }catch (Exception e){
-                System.err.println("Error while broadcasting the race information");
+                System.err.println("Error while broadcasting the raceManager information");
                 e.printStackTrace();
             }
         }
     }
+
+    public void broadcastAthletes(List<Athlete> athleteList){
+        //tell each client about the athleteList
+        for(Client c: clientList){
+            for(Athlete a: athleteList){
+                try{
+                    communicator.send(a.getAthleteCommandString(), c.getAddress(), c.getPort());
+                }catch (Exception e){
+                    System.err.println("Error while broadcasting the athlete information");
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 
     public void registerClient(InetAddress address, int port){
         Client client = new Client(address, port);

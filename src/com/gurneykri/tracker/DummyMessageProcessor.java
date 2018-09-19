@@ -37,7 +37,7 @@ public class DummyMessageProcessor implements IMessageProcessor {
 
             try {
                 System.out.println("About to send to client");
-                communicator.send("com.gurneykri.tracker.Race,TestRace,100",address,port);
+                communicator.send("com.gurneykri.tracker.RaceManager,TestRace,100",address,port);
                 communicator.send("Athlete,1234,Krista,Gurney,female,23", address, port);
                 System.out.println("Sent the message to client");
             } catch (Exception e){
