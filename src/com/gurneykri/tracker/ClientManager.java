@@ -48,4 +48,25 @@ public class ClientManager {
         clientList.add(client);
     }
 
+    public void broadcastAthletesStatus(List<Athlete> athleteList){
+        //go through all the clients
+        for(Client c: clientList){
+            for(Athlete a: athleteList) {
+                for(Athlete sa: c.getSubscribedAthletes()) {
+                    if(sa.getBibNumber()==a.getBibNumber()){
+                        try{
+                            communicator.send(a.getAthleteStatusString(), c.getAddress(), c.getPort());
+                        }catch (Exception e){
+                            System.err.println("Error while broadcasting the athlete status");
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+        //get the list of subscribed athletes
+        //compare those with every athlete in the list
+        //if match send the message
+    }
+
 }

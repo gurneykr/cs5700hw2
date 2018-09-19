@@ -10,6 +10,14 @@ public class Client {
 
     private List<Athlete> subscribedAthletes = new ArrayList();
 
+    public List<Athlete> getSubscribedAthletes() {
+        return subscribedAthletes;
+    }
+
+    public void subscribeToAthlete(Athlete athlete){
+        subscribedAthletes.add(athlete);
+    }
+
     public Client(InetAddress address, int port){
         this.address = address;
         this.port = port;
@@ -22,4 +30,6 @@ public class Client {
     public int getPort() {
         return port;
     }
+
+
 }

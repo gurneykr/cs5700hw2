@@ -10,10 +10,23 @@ public class RaceManager {
     private String name;
     private int length;
 
+
     private List<Athlete> athleteList = new ArrayList();
 
     public void registerAthlete(Athlete athlete){
         athleteList.add(athlete);
     }
+
+    public Athlete findAthleteByBibNumber(int bibNumber){
+        Athlete athlete = null;
+        for(Athlete a : athleteList){
+            if(a.getBibNumber()==bibNumber){
+                athlete = a;
+                break;
+            }
+        }
+        return athlete;
+    }
+
 
 }

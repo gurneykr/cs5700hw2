@@ -14,7 +14,7 @@ public class RegisterAthleteCommand extends BaseCommand{
     public RegisterAthleteCommand(ClientManager clientManager, RaceManager raceManager, String message, InetAddress address, int port){
         super(clientManager, raceManager);
 
-        //the message coming in will look like this "Registered,bibNumber,time,firstNmae,lastName,gender,age"
+        //the message coming in will look like this "Registered,bibNumber,time,firstName,lastName,gender,age"
         this.athlete = new Athlete();
 
         String[] parts = message.split(",");

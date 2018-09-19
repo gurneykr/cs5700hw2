@@ -9,12 +9,18 @@ public class Athlete {
     private String status;
     private double distance;
     private int time;
+    private int startTime;
+    private int finishTime;
+
     private String gender;
 
     public String getAthleteCommandString(){
         return "Athlete,"+ bibNumber + "," + firstName + "," + lastName + "," + gender + "," + age;
     }
 
+    public String getAthleteStatusString(){
+        return "Status,"+ bibNumber + "," + status + "," + startTime + "," + distance + "," + time + "," + finishTime;
+    }
 
     public String getGender() {
         return gender;
