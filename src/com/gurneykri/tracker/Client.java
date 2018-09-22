@@ -18,6 +18,11 @@ public class Client {
         subscribedAthletes.add(athlete);
     }
 
+    public void unsubscribeToAthlete(Athlete athlete){
+        subscribedAthletes.remove(athlete);
+    }
+
+
     public Client(InetAddress address, int port){
         this.address = address;
         this.port = port;

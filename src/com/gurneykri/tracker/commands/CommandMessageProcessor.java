@@ -26,6 +26,12 @@ public class CommandMessageProcessor implements IMessageProcessor {
             command = new RegisterClientCommand(clientManager, raceManager, message, address, port);
         }else if(message.startsWith("Registered")){
             command = new RegisterAthleteCommand(clientManager, raceManager, message, address, port);
+        }else if(message.startsWith("OnCourse")){
+            command = new AthleteUpdateCommand(clientManager, raceManager, message, address, port);
+        }else if(message.startsWith("Subscribe") || message.startsWith("Unsubscribe") ){
+            command = new SubscribeUnsubscribeAthleteCommand(clientManager, raceManager, message, address, port);
+        }else if(message.startsWith("Started")){
+            command = new StartCommand(clientManager, raceManager, message, address, port);
         }
 
         if(command != null) {

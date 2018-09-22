@@ -24,6 +24,7 @@ public class RegisterAthleteCommand extends BaseCommand{
         athlete.setLastName(parts[4]);
         athlete.setGender(parts[5]);
         athlete.setAge(Integer.parseInt(parts[6]));
+        athlete.setStatus("Registered");
     }
 
     @Override

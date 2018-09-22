@@ -28,5 +28,7 @@ public class RaceManager {
         return athlete;
     }
 
-
+    public List<Athlete> getAthleteList() {
+        return athleteList;
+    }
 }

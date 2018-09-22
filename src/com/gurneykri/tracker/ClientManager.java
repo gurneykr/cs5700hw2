@@ -64,9 +64,16 @@ public class ClientManager {
                 }
             }
         }
-        //get the list of subscribed athletes
-        //compare those with every athlete in the list
-        //if match send the message
     }
 
+    public Client findClient(InetAddress address, int port){
+        Client client = null;
+        for(Client c: clientList){
+            if(c.getAddress().getHostAddress().equals(address.getHostAddress()) && c.getPort() == port){
+                client = c;
+                break;
+            }
+         }
+        return client;
+    }
 }

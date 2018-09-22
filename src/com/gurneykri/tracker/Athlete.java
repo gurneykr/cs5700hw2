@@ -1,5 +1,7 @@
 package com.gurneykri.tracker;
 
+import java.util.Objects;
+
 public class Athlete {
     private String name;
     private int bibNumber;
@@ -92,5 +94,19 @@ public class Athlete {
 
     public void setTime(int time) {
         this.time = time;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Athlete athlete = (Athlete) o;
+        return bibNumber == athlete.bibNumber;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(bibNumber);
     }
 }
