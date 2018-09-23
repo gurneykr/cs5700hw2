@@ -32,6 +32,12 @@ public class CommandMessageProcessor implements IMessageProcessor {
             command = new SubscribeUnsubscribeAthleteCommand(clientManager, raceManager, message, address, port);
         }else if(message.startsWith("Started")){
             command = new StartCommand(clientManager, raceManager, message, address, port);
+        }else if(message.startsWith("DidNotStart")){
+            command = new DidNotStartCommand(clientManager, raceManager, message, address, port);
+        }else if(message.startsWith("DidNotFinishCommand")){
+            command = new DidNotFinishCommand(clientManager, raceManager, message, address, port);
+        }else if(message.startsWith("Finished")){
+            command = new FinishedCommand(clientManager, raceManager, message, address, port);
         }
 
         if(command != null) {

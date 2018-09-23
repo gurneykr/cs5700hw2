@@ -11,12 +11,17 @@ to talk to the clients.
 public class ClientManager {
     private List<Client> clientList = new ArrayList();
     private Communicator communicator;
+    private String raceName;
+    private int raceLength = 0;
 
     public ClientManager(Communicator communicator){
         this.communicator = communicator;
     }
 
     public void broadcastRaceInfo(String raceName, int raceLength){
+        this.raceName = raceName;
+        this.raceLength = raceLength;
+
         //tell each client about the Race
         for(Client c: clientList){
             try {
@@ -43,9 +48,14 @@ public class ClientManager {
     }
 
 
-    public void registerClient(InetAddress address, int port){
+    public void registerClient(List<Athlete> athleteList,InetAddress address, int port){
         Client client = new Client(address, port);
         clientList.add(client);
+
+        if(raceName != null && raceLength > 0) {
+            broadcastRaceInfo(raceName, raceLength);
+        }
+        broadcastAthletes(athleteList);
     }
 
     public void broadcastAthletesStatus(List<Athlete> athleteList){

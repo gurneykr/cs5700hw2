@@ -13,10 +13,12 @@ public class RegisterClientCommand extends BaseCommand {
         super(clientManager, raceManager);
         this.address = address;
         this.port = port;
+
     }
     @Override
     public void execute() {
         //tell the client manager to register the client
-        clientManager.registerClient(address, port);
+        clientManager.registerClient(raceManager.getAthleteList(),address, port);
+
     }
 }
