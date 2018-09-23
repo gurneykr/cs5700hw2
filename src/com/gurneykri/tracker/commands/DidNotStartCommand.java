@@ -9,11 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DidNotStartCommand extends BaseCommand {
-    private List<Athlete> athleteList = new ArrayList();
-
     public DidNotStartCommand(ClientManager clientManager, RaceManager raceManager, String message, InetAddress address, int port) {
-        super(clientManager, raceManager);
+        super(clientManager, raceManager, message);
 
+    }
+
+    @Override
+    public void execute() {
+        List<Athlete> athleteList = new ArrayList();
         //DidNotStart,<bib number>,<time>
         String[] parts = message.split(",");
         int bibNumber = Integer.parseInt(parts[1]);
@@ -26,10 +29,6 @@ public class DidNotStartCommand extends BaseCommand {
             athlete.setStatus("DidNotStart");
             athleteList.add(athlete);
         }
-    }
-
-    @Override
-    public void execute() {
         clientManager.broadcastAthletesStatus(athleteList);
     }
 }

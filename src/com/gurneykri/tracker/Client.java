@@ -22,7 +22,6 @@ public class Client {
         subscribedAthletes.remove(athlete);
     }
 
-
     public Client(InetAddress address, int port){
         this.address = address;
         this.port = port;
@@ -35,6 +34,5 @@ public class Client {
     public int getPort() {
         return port;
     }
-
-
+    
 }

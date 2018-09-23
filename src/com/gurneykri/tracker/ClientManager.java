@@ -47,7 +47,6 @@ public class ClientManager {
         }
     }
 
-
     public void registerClient(List<Athlete> athleteList,InetAddress address, int port){
         Client client = new Client(address, port);
         clientList.add(client);

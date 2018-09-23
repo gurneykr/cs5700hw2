@@ -19,27 +19,25 @@ public class CommandMessageProcessor implements IMessageProcessor {
     public void process(String message, InetAddress address, int port) {
         ICommand command = null;
 
-        //decide which command to construct
         if(message.startsWith("Race")){
-            command = new CreateRaceCommand(clientManager, raceManager, message, address, port);
+            command = new CreateRaceCommand(clientManager, raceManager, message);
         }else if(message.startsWith("Hello")){
             command = new RegisterClientCommand(clientManager, raceManager, message, address, port);
         }else if(message.startsWith("Registered")){
-            command = new RegisterAthleteCommand(clientManager, raceManager, message, address, port);
+            command = new RegisterAthleteCommand(clientManager, raceManager, message);
         }else if(message.startsWith("OnCourse")){
-            command = new AthleteUpdateCommand(clientManager, raceManager, message, address, port);
+            command = new AthleteUpdateCommand(clientManager, raceManager, message);
         }else if(message.startsWith("Subscribe") || message.startsWith("Unsubscribe") ){
             command = new SubscribeUnsubscribeAthleteCommand(clientManager, raceManager, message, address, port);
         }else if(message.startsWith("Started")){
-            command = new StartCommand(clientManager, raceManager, message, address, port);
+            command = new StartCommand(clientManager, raceManager, message);
         }else if(message.startsWith("DidNotStart")){
             command = new DidNotStartCommand(clientManager, raceManager, message, address, port);
         }else if(message.startsWith("DidNotFinishCommand")){
-            command = new DidNotFinishCommand(clientManager, raceManager, message, address, port);
+            command = new DidNotFinishCommand(clientManager, raceManager, message);
         }else if(message.startsWith("Finished")){
-            command = new FinishedCommand(clientManager, raceManager, message, address, port);
+            command = new FinishedCommand(clientManager, raceManager, message);
         }
-
         if(command != null) {
             command.execute();
         }

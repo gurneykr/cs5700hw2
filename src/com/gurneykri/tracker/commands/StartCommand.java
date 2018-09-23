@@ -1,20 +1,21 @@
 package com.gurneykri.tracker.commands;
 
 import com.gurneykri.tracker.Athlete;
-import com.gurneykri.tracker.Client;
 import com.gurneykri.tracker.ClientManager;
 import com.gurneykri.tracker.RaceManager;
 
-import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StartCommand extends BaseCommand {
-    private List<Athlete> athleteList = new ArrayList();
-    private Client client;
 
-    public StartCommand(ClientManager clientManager, RaceManager raceManager,String message, InetAddress address, int port) {
-        super(clientManager, raceManager);
+    public StartCommand(ClientManager clientManager, RaceManager raceManager,String message) {
+        super(clientManager, raceManager, message);
+    }
+
+    @Override
+    public void execute() {
+        List<Athlete> athleteList = new ArrayList();
 
         String[] parts = message.split(",");
         int bibNumber = Integer.parseInt(parts[1]);
@@ -27,11 +28,6 @@ public class StartCommand extends BaseCommand {
             athlete.setTime(time);
             athleteList.add(athlete);
         }
-
-    }
-
-    @Override
-    public void execute() {
         clientManager.broadcastAthletesStatus(athleteList);
     }
 }

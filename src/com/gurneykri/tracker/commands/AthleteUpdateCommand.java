@@ -9,12 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AthleteUpdateCommand extends BaseCommand {
-    private List<Athlete> athleteList = new ArrayList();
 
-    public AthleteUpdateCommand(ClientManager clientManager, RaceManager raceManager, String message, InetAddress address, int port){
-        super(clientManager, raceManager);
+    public AthleteUpdateCommand(ClientManager clientManager, RaceManager raceManager, String message){
+        super(clientManager, raceManager, message);
+    }
 
-        //message coming in is OnCourse,<bib number>,<time>,<distance covered in
+    @Override
+    public void execute() {
+        List<Athlete> athleteList = new ArrayList();
+
         String[] parts = message.split(",");
         int bibNumber = Integer.parseInt(parts[1]);
         int time = Integer.parseInt(parts[2]);
@@ -26,12 +29,7 @@ public class AthleteUpdateCommand extends BaseCommand {
             athlete.setDistance(distance);
             athlete.setStatus("OnCourse");
             athleteList.add(athlete);
+            clientManager.broadcastAthletesStatus(athleteList);
         }
-    }
-
-    @Override
-    public void execute() {
-
-        clientManager.broadcastAthletesStatus(athleteList);
     }
 }

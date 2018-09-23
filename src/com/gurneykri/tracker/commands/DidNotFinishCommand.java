@@ -9,12 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DidNotFinishCommand extends BaseCommand {
-    private List<Athlete> athleteList = new ArrayList();
 
+    public DidNotFinishCommand(ClientManager clientManager, RaceManager raceManager, String message) {
+        super(clientManager, raceManager, message);
+    }
 
-
-    public DidNotFinishCommand(ClientManager clientManager, RaceManager raceManager, String message, InetAddress address, int port) {
-        super(clientManager, raceManager);
+    @Override
+    public void execute() {
+        List<Athlete> athleteList = new ArrayList();
 
         String[] parts = message.split(",");
         int bibNumber = Integer.parseInt(parts[1]);
@@ -27,10 +29,7 @@ public class DidNotFinishCommand extends BaseCommand {
             athlete.setStatus("DidNotFinish");
             athleteList.add(athlete);
         }
-    }
 
-    @Override
-    public void execute() {
         clientManager.broadcastAthletesStatus(athleteList);
     }
 }
