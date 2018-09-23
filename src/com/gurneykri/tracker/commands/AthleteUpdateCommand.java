@@ -5,9 +5,11 @@ import com.gurneykri.tracker.ClientManager;
 import com.gurneykri.tracker.RaceManager;
 
 import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AthleteUpdateCommand extends BaseCommand {
-    //private String name;
+    private List<Athlete> athleteList = new ArrayList();
 
     public AthleteUpdateCommand(ClientManager clientManager, RaceManager raceManager, String message, InetAddress address, int port){
         super(clientManager, raceManager);
@@ -22,11 +24,14 @@ public class AthleteUpdateCommand extends BaseCommand {
         if(athlete != null) {
             athlete.setTime(time);
             athlete.setDistance(distance);
+            athlete.setStatus("OnCourse");
+            athleteList.add(athlete);
         }
     }
 
     @Override
     public void execute() {
-        clientManager.broadcastAthletesStatus(raceManager.getAthleteList());
+
+        clientManager.broadcastAthletesStatus(athleteList);
     }
 }

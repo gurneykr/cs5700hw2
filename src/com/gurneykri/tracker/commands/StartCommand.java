@@ -23,6 +23,7 @@ public class StartCommand extends BaseCommand {
         Athlete athlete = raceManager.findAthleteByBibNumber(bibNumber);
         if(athlete != null) {
             athlete.setStatus("Started");
+            athlete.setStartTime(time);
             athlete.setTime(time);
             athleteList.add(athlete);
         }

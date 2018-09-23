@@ -75,6 +75,7 @@ public class Communicator implements Runnable {
         byte[] sendData = message.getBytes(UTF_16BE);
         DatagramPacket packet = new DatagramPacket(sendData, sendData.length, targetAddress, targetPort);
         datagramSocket.send(packet);
+        System.out.println(message);
     }
 
     /**
