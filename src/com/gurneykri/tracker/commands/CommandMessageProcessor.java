@@ -32,7 +32,7 @@ public class CommandMessageProcessor implements IMessageProcessor {
         }else if(message.startsWith("Started")){
             command = new StartCommand(clientManager, raceManager, message);
         }else if(message.startsWith("DidNotStart")){
-            command = new DidNotStartCommand(clientManager, raceManager, message, address, port);
+            command = new DidNotStartCommand(clientManager, raceManager, message);
         }else if(message.startsWith("DidNotFinishCommand")){
             command = new DidNotFinishCommand(clientManager, raceManager, message);
         }else if(message.startsWith("Finished")){
