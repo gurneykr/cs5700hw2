@@ -33,7 +33,38 @@ public class DidNotFinishCommandTest {
         assertEquals(athleteList.get(0).getFinishTime(), 234);
         assertEquals(athleteList.get(0).getStatus(), "DidNotFinish");
 
-
+    }
+    @Test
+    public void testInvalidBibNumber(){
+        DidNotFinishCommand didNotFinishCommand = new DidNotFinishCommand(clientManager, raceManager,"DidNotFinishCommand,junk,234");
+       try {
+           didNotFinishCommand.execute();
+           //shouldn't got here something's wrong
+           assertEquals(true, false);
+       }catch (Exception e){
+            assertEquals(true, true);
+        }
     }
 
+    @Test
+    public void testInvalidTime(){
+        DidNotFinishCommand didNotFinishCommand = new DidNotFinishCommand(clientManager, raceManager,"DidNotFinishCommand,1,junk");
+        try {
+            didNotFinishCommand.execute();
+            //shouldn't got here something's wrong
+            assertEquals(true, false);
+        }catch (Exception e){
+            assertEquals(true, true);
+        }
+    }
+
+    @Test
+    public void testNotAthletes(){
+        DidNotFinishCommand didNotFinishCommand = new DidNotFinishCommand(clientManager, new RaceManager(),"DidNotFinishCommand,1,234");
+        didNotFinishCommand.execute();
+        List<Athlete> athleteList = clientManager.getAthleteStatusList();
+
+        assertNotNull(athleteList);
+        assertEquals(athleteList.size(), 0);
+    }
 }
