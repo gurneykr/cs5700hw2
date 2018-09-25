@@ -1,7 +1,7 @@
 package com.gurneykri.tracker.commands;
 
 import com.gurneykri.tracker.Athlete;
-import com.gurneykri.tracker.ClientManager;
+import com.gurneykri.tracker.IClientManager;
 import com.gurneykri.tracker.RaceManager;
 
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class RegisterAthleteCommand extends BaseCommand{
 
-    public RegisterAthleteCommand(ClientManager clientManager, RaceManager raceManager, String message){
+    public RegisterAthleteCommand(IClientManager clientManager, RaceManager raceManager, String message){
         super(clientManager, raceManager, message);
     }
 

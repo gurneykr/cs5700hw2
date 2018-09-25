@@ -5,6 +5,11 @@ import java.util.List;
 
 public class DummyClientManager implements IClientManager {
     private List<Athlete> athleteStatusList;
+    private List<Athlete> athleteList;
+
+    public List<Athlete> getAthleteList() {
+        return athleteList;
+    }
 
     public List<Athlete> getAthleteStatusList() {
         return athleteStatusList;
@@ -17,7 +22,7 @@ public class DummyClientManager implements IClientManager {
 
     @Override
     public void broadcastAthletes(List<Athlete> athleteList) {
-
+        this.athleteList = athleteList;
     }
 
     @Override
