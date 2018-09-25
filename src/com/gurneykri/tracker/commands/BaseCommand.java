@@ -29,6 +29,10 @@ public abstract class BaseCommand implements ICommand{
         this.port = port;
     }
 
+    public void setMessage(String message){
+        this.message = message;
+    }
+
 
 
 }

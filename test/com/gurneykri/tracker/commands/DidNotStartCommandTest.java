@@ -6,6 +6,7 @@ import com.gurneykri.tracker.RaceManager;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -36,37 +37,28 @@ public class DidNotStartCommandTest {
         assertEquals(athleteList.get(0).getStatus(), "DidNotStart");
 
     }
-    @Test
-    public void testInvalidBibNumber(){
-        DidNotStartCommand didNotStartCommand = new DidNotStartCommand(clientManager, raceManager,"DidNotStartCommand,junk,234");
-        try {
-            didNotStartCommand.execute();
-            //shouldn't got here something's wrong
-            assertEquals(true, false);
-        }catch (Exception e){
-            assertEquals(true, true);
-        }
-    }
 
     @Test
-    public void testInvalidTime(){
-        DidNotStartCommand didNotStartCommand = new DidNotStartCommand(clientManager, raceManager,"DidNotStartCommand,1,junk");
-        try {
-            didNotStartCommand.execute();
-            //shouldn't got here something's wrong
-            assertEquals(true, false);
-        }catch (Exception e){
-            assertEquals(true, true);
-        }
-    }
-
-    @Test
-    public void testNotAthletes(){
+    public void testNoAthletes(){
         DidNotStartCommand didNotStartCommand = new DidNotStartCommand(clientManager, new RaceManager(),"DidNotStartCommand,1,234");
         didNotStartCommand.execute();
         List<Athlete> athleteList = clientManager.getAthleteStatusList();
 
         assertNotNull(athleteList);
         assertEquals(athleteList.size(), 0);
+    }
+
+    @Test
+    public void testInvalidMessage() {
+        List<String> badMessages = new ArrayList();
+
+        badMessages.add("DidNotStart,junk,234");
+        badMessages.add("DidNotStart,1,junk");
+
+        badMessages.add("DidNotStart");
+        badMessages.add("DidNotStart,1");
+
+        DidNotStartCommand didNotStartCommand= new DidNotStartCommand(clientManager, raceManager, "");
+        TestHelpers.testValidMessage(badMessages, didNotStartCommand);
     }
 }

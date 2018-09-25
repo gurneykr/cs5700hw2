@@ -18,8 +18,8 @@ public class RegisterAthleteCommandTest {
 
 
     @Test
-    public void testValidExecute(){
-        RegisterAthleteCommand registerAthleteCommand = new RegisterAthleteCommand(clientManager, raceManager,"Registered,1,234,Krista,Gurney,F,23");
+    public void testValidExecute() {
+        RegisterAthleteCommand registerAthleteCommand = new RegisterAthleteCommand(clientManager, raceManager, "Registered,1,234,Krista,Gurney,F,23");
         registerAthleteCommand.execute();
         List<Athlete> athleteList = clientManager.getAthleteList();
 
@@ -27,11 +27,10 @@ public class RegisterAthleteCommandTest {
         assertEquals(athleteList.size(), 1);
         assertEquals(athleteList.get(0).getBibNumber(), 1);
         assertEquals(athleteList.get(0).getStatus(), "Registered");
-
     }
 
     @Test
-    public void testValidMessage(){
+    public void testInvalidMessage() {
         List<String> badMessages = new ArrayList();
 
         badMessages.add("Registered,junk,234,Krista,Gurney,F,23");
@@ -45,21 +44,8 @@ public class RegisterAthleteCommandTest {
         badMessages.add("Registered,1,234,Krista,Gurney");
         badMessages.add("Registered,1,234,Krista,Gurney,F");
 
-        for(String bm: badMessages) {
+        RegisterAthleteCommand registerAthleteCommand = new RegisterAthleteCommand(clientManager, raceManager, "");
+        TestHelpers.testValidMessage(badMessages, registerAthleteCommand);
 
-            RegisterAthleteCommand registerAthleteCommand = new RegisterAthleteCommand(clientManager, raceManager, bm);
-            try {
-                registerAthleteCommand.execute();
-                //shouldn't got here something's wrong
-                assertEquals(true, false);
-            } catch (Exception e) {
-                assertEquals(true, true);
-            }
-        }
     }
-
-
-
-
-
 }

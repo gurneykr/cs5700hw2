@@ -4,6 +4,7 @@ import com.gurneykri.tracker.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -34,37 +35,27 @@ public class DidNotFinishCommandTest {
         assertEquals(athleteList.get(0).getStatus(), "DidNotFinish");
 
     }
-    @Test
-    public void testInvalidBibNumber(){
-        DidNotFinishCommand didNotFinishCommand = new DidNotFinishCommand(clientManager, raceManager,"DidNotFinishCommand,junk,234");
-       try {
-           didNotFinishCommand.execute();
-           //shouldn't got here something's wrong
-           assertEquals(true, false);
-       }catch (Exception e){
-            assertEquals(true, true);
-        }
-    }
 
     @Test
-    public void testInvalidTime(){
-        DidNotFinishCommand didNotFinishCommand = new DidNotFinishCommand(clientManager, raceManager,"DidNotFinishCommand,1,junk");
-        try {
-            didNotFinishCommand.execute();
-            //shouldn't got here something's wrong
-            assertEquals(true, false);
-        }catch (Exception e){
-            assertEquals(true, true);
-        }
-    }
-
-    @Test
-    public void testNotAthletes(){
+    public void testNoAthletes(){
         DidNotFinishCommand didNotFinishCommand = new DidNotFinishCommand(clientManager, new RaceManager(),"DidNotFinishCommand,1,234");
         didNotFinishCommand.execute();
         List<Athlete> athleteList = clientManager.getAthleteStatusList();
 
         assertNotNull(athleteList);
         assertEquals(athleteList.size(), 0);
+    }
+    @Test
+    public void testInvalidMessage() {
+        List<String> badMessages = new ArrayList();
+
+        badMessages.add("DidNotFinish,junk,234");
+        badMessages.add("DidNotFinish,1,junk");
+
+        badMessages.add("DidNotFinish");
+        badMessages.add("DidNotFinish,1");
+
+        DidNotFinishCommand didNotFinishCommand= new DidNotFinishCommand(clientManager, raceManager, "");
+        TestHelpers.testValidMessage(badMessages, didNotFinishCommand);
     }
 }
