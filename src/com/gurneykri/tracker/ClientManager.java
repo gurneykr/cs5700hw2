@@ -8,7 +8,7 @@ The purpose of this object is to keep track of all the clients and to be able to
 to talk to the clients.
  */
 
-public class ClientManager {
+public class ClientManager implements IClientManager{
     private List<Client> clientList = new ArrayList();
     private Communicator communicator;
     private String raceName;

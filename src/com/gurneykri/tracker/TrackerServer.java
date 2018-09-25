@@ -21,7 +21,6 @@ public class TrackerServer {
     public void start()throws SocketException{
         System.out.println("Starting Tracker Server");
 
-        //TODO ask the user for the port
         communicator = new Communicator(12000);
 
         ClientManager clientManager = new ClientManager(communicator);

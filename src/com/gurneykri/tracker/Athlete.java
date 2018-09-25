@@ -3,7 +3,6 @@ package com.gurneykri.tracker;
 import java.util.Objects;
 
 public class Athlete {
-    private String name;
     private int bibNumber;
     private String firstName;
     private String lastName;
@@ -15,6 +14,17 @@ public class Athlete {
     private int finishTime;
 
     private String gender;
+
+    public Athlete() { }
+
+    public Athlete(int bibNumber, String firstName, String lastName, int age, String status, String gender) {
+        this.bibNumber = bibNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.status = status;
+        this.gender = gender;
+    }
 
     public String getAthleteCommandString(){
         return "Athlete,"+ bibNumber + "," + firstName + "," + lastName + "," + gender + "," + age;
@@ -46,14 +56,6 @@ public class Athlete {
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getBibNumber() {

@@ -1,16 +1,15 @@
 package com.gurneykri.tracker.commands;
 
 import com.gurneykri.tracker.Athlete;
-import com.gurneykri.tracker.ClientManager;
+import com.gurneykri.tracker.IClientManager;
 import com.gurneykri.tracker.RaceManager;
 
-import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DidNotFinishCommand extends BaseCommand {
 
-    public DidNotFinishCommand(ClientManager clientManager, RaceManager raceManager, String message) {
+    public DidNotFinishCommand(IClientManager clientManager, RaceManager raceManager, String message) {
         super(clientManager, raceManager, message);
     }
 
