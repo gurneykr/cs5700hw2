@@ -2,6 +2,7 @@ package com.gurneykri.tracker.commands;
 
 import com.gurneykri.tracker.Athlete;
 import com.gurneykri.tracker.ClientManager;
+import com.gurneykri.tracker.IClientManager;
 import com.gurneykri.tracker.RaceManager;
 
 import java.net.InetAddress;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public class AthleteUpdateCommand extends BaseCommand {
 
-    public AthleteUpdateCommand(ClientManager clientManager, RaceManager raceManager, String message){
+    public AthleteUpdateCommand(IClientManager clientManager, RaceManager raceManager, String message){
         super(clientManager, raceManager, message);
     }
 

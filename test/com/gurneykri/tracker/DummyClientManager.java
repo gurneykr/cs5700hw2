@@ -65,6 +65,7 @@ public class DummyClientManager implements IClientManager {
 
     @Override
     public void broadcastAthletesStatus(List<Athlete> athleteList) {
+
         athleteStatusList = athleteList;
     }
 
