@@ -1,12 +1,11 @@
 package com.gurneykri.tracker.commands;
-
-import com.gurneykri.tracker.ClientManager;
+import com.gurneykri.tracker.IClientManager;
 import com.gurneykri.tracker.RaceManager;
 
 public class CreateRaceCommand extends BaseCommand implements ICommand {
 
 
-    public CreateRaceCommand(ClientManager clientManager, RaceManager raceManager, String message){
+    public CreateRaceCommand(IClientManager clientManager, RaceManager raceManager, String message){
         super(clientManager, raceManager,message);
     }
 

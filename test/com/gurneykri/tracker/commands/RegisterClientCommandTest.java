@@ -16,7 +16,7 @@ import static org.junit.Assert.assertNull;
 public class RegisterClientCommandTest {
     private RaceManager raceManager = new RaceManager();
     private DummyClientManager clientManager = new DummyClientManager();
-    
+
     @Before
     public void loadAthletes(){
         Athlete athlete = new Athlete(1, "Krista","Gurney",23,"Registered","F");

@@ -8,6 +8,16 @@ public class DummyClientManager implements IClientManager {
     private List<Athlete> athleteList;
     private InetAddress address;
     private int port;
+    private String raceName;
+    private int raceLength;
+
+    public String getRaceName() {
+        return raceName;
+    }
+
+    public int getRaceLength() {
+        return raceLength;
+    }
 
     public InetAddress getAddress() {
         return address;
@@ -35,7 +45,8 @@ public class DummyClientManager implements IClientManager {
 
     @Override
     public void broadcastRaceInfo(String raceName, int raceLength) {
-
+        this.raceName = raceName;
+        this.raceLength = raceLength;
     }
 
     @Override
