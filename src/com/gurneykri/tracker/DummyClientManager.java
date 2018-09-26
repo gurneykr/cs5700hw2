@@ -6,6 +6,24 @@ import java.util.List;
 public class DummyClientManager implements IClientManager {
     private List<Athlete> athleteStatusList;
     private List<Athlete> athleteList;
+    private InetAddress address;
+    private int port;
+
+    public InetAddress getAddress() {
+        return address;
+    }
+
+    public void setAddress(InetAddress address) {
+        this.address = address;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
+    }
 
     public List<Athlete> getAthleteList() {
         return athleteList;
@@ -27,6 +45,9 @@ public class DummyClientManager implements IClientManager {
 
     @Override
     public void registerClient(List<Athlete> athleteList, InetAddress address, int port) {
+        this.athleteList = athleteList;
+        this.address = address;
+        this.port = port;
 
     }
 

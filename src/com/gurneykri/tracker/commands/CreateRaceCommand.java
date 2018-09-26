@@ -3,8 +3,6 @@ package com.gurneykri.tracker.commands;
 import com.gurneykri.tracker.ClientManager;
 import com.gurneykri.tracker.RaceManager;
 
-import java.net.InetAddress;
-
 public class CreateRaceCommand extends BaseCommand implements ICommand {
 
 
