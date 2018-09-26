@@ -28,9 +28,8 @@ public class TrackerServer {
 
         CommandMessageProcessor cmp = new CommandMessageProcessor(clientManager, raceManager);
 
+        System.out.println("Clients can communicate by connecting to port: 12000");
         communicator.setProcessor(cmp);
         communicator.start();
-
     }
-
 }
