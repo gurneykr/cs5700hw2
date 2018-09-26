@@ -29,7 +29,7 @@ public class CreateRaceCommandTest {
     @Test
     public void testInvalidMessage() {
         List<String> badMessages = new ArrayList();
-        
+
         badMessages.add("Race,BensonLoop,junk");
 
         badMessages.add("Race");

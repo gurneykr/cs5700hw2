@@ -9,7 +9,7 @@ to talk to the clients.
  */
 
 public class ClientManager implements IClientManager{
-    private List<Client> clientList = new ArrayList();
+    private List<IClient> clientList = new ArrayList();
     private Communicator communicator;
     private String raceName;
     private int raceLength = 0;
@@ -23,7 +23,7 @@ public class ClientManager implements IClientManager{
         this.raceLength = raceLength;
 
         //tell each client about the Race
-        for(Client c: clientList){
+        for(IClient c: clientList){
             try {
                 communicator.send("Race,"+ raceName +"," + raceLength, c.getAddress(), c.getPort());
             }catch (Exception e){
@@ -35,7 +35,7 @@ public class ClientManager implements IClientManager{
 
     public void broadcastAthletes(List<Athlete> athleteList){
         //tell each client about the athleteList
-        for(Client c: clientList){
+        for(IClient c: clientList){
             for(Athlete a: athleteList){
                 try{
                     communicator.send(a.getAthleteCommandString(), c.getAddress(), c.getPort());
@@ -48,7 +48,7 @@ public class ClientManager implements IClientManager{
     }
 
     public void registerClient(List<Athlete> athleteList,InetAddress address, int port){
-        Client client = new Client(address, port);
+        IClient client = new Client(address, port);
         clientList.add(client);
 
         if(raceName != null && raceLength > 0) {
@@ -59,7 +59,7 @@ public class ClientManager implements IClientManager{
 
     public void broadcastAthletesStatus(List<Athlete> athleteList){
         //go through all the clients
-        for(Client c: clientList){
+        for(IClient c: clientList){
             for(Athlete a: athleteList) {
                 for(Athlete sa: c.getSubscribedAthletes()) {
                     if(sa.getBibNumber()==a.getBibNumber()){
@@ -75,9 +75,9 @@ public class ClientManager implements IClientManager{
         }
     }
 
-    public Client findClient(InetAddress address, int port){
-        Client client = null;
-        for(Client c: clientList){
+    public IClient findClient(InetAddress address, int port){
+        IClient client = null;
+        for(IClient c: clientList){
             if(c.getAddress().getHostAddress().equals(address.getHostAddress()) && c.getPort() == port){
                 client = c;
                 break;

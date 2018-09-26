@@ -12,5 +12,6 @@ public interface IClientManager{
 
     public void broadcastAthletesStatus(List<Athlete> athleteList);
 
-    public Client findClient(InetAddress address, int port);
+    public IClient findClient(InetAddress address, int port);
+
 }

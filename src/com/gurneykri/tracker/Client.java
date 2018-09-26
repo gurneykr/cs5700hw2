@@ -4,7 +4,7 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Client {
+public class Client implements IClient {
     private InetAddress address;
     private int port;
 

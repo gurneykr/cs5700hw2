@@ -10,6 +10,7 @@ public class DummyClientManager implements IClientManager {
     private int port;
     private String raceName;
     private int raceLength;
+    private DummyClient client;
 
     public String getRaceName() {
         return raceName;
@@ -68,7 +69,13 @@ public class DummyClientManager implements IClientManager {
     }
 
     @Override
-    public Client findClient(InetAddress address, int port) {
-        return null;
+    public IClient findClient(InetAddress address, int port) {
+        client = new DummyClient(address, port);
+        return client;
     }
+
+    public DummyClient getClient(){
+        return client;
+    }
+
 }
